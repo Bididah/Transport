@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { ClientsModule } from './clients/clients.module';
 import LogsMiddleware from './utils/middlewares/LoggerMiddleware';
 
 @Module({
@@ -34,6 +35,7 @@ import LogsMiddleware from './utils/middlewares/LoggerMiddleware';
     }),
     AuthModule,
     UsersModule,
+    ClientsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
