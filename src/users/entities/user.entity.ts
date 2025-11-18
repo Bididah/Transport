@@ -1,9 +1,9 @@
 import { Exclude } from 'class-transformer';
-import { BaseEntity } from 'src/utils/base-entity';
+import { GenericEntity } from 'src/utils/generic-entity';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('users')
-export class User extends BaseEntity {
+export class User extends GenericEntity {
   @PrimaryGeneratedColumn('uuid')
   declare id: string;
 

@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { CrudService } from 'src/utils/crud-service';
+import { GenericService } from 'src/utils/generic-service';
 import { User } from './entities/user.entity';
 import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
 import { DataSource, DeepPartial, Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
-export class UsersService extends CrudService<User> {
+export class UsersService extends GenericService<User> {
   constructor(
     @InjectRepository(User) private readonly users: Repository<User>,
     @InjectDataSource() private readonly data: DataSource,

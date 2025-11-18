@@ -12,13 +12,13 @@ import {
   FindOneOptions,
   DataSource,
 } from 'typeorm';
-import { BaseEntity } from './base-entity';
+import { GenericEntity } from './generic-entity';
 import { HistoricalChange } from 'src/historical-changes/entities/historical-change.entity';
 import { log } from 'console';
 import { generateUUID, groupByField } from './random-number';
 
 @Injectable()
-export class CrudService<T extends BaseEntity> {
+export class GenericService<T extends GenericEntity> {
   constructor(
     private readonly repository: Repository<T>,
     private readonly dataSource: DataSource,

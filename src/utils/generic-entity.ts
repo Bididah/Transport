@@ -6,7 +6,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export abstract class BaseEntity {
+export abstract class GenericEntity {
   id: number | string;
 
   // @PrimaryGeneratedColumn('uuid') // Adding a second primary key column
@@ -20,5 +20,4 @@ export abstract class BaseEntity {
 
   @Column({ nullable: true })
   createdBy: number;
-
 }

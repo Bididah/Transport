@@ -1,13 +1,11 @@
-import { BaseEntity } from 'src/utils/base-entity';
+import { GenericEntity } from 'src/utils/generic-entity';
 import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 
-@Index(["entityName", "entityId"], { unique: false })
+@Index(['entityName', 'entityId'], { unique: false })
 @Entity()
-export class HistoricalChange extends BaseEntity {
-
+export class HistoricalChange extends GenericEntity {
   @PrimaryGeneratedColumn('uuid')
   declare id: string;
-
 
   @Column({ select: false })
   entityName: string;
@@ -28,5 +26,5 @@ export class HistoricalChange extends BaseEntity {
   newValue: string;
 
   @Column()
-  event: string
+  event: string;
 }

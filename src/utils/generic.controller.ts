@@ -7,13 +7,13 @@ import {
   Delete,
   HttpCode,
 } from '@nestjs/common';
-import { CrudService } from './crud-service';
-import { BaseEntity } from './base-entity';
+import { GenericService } from './generic-service';
+import { GenericEntity } from './generic-entity';
 import { DeepPartial, FindOptionsWhere } from 'typeorm';
 import { GetUser } from './get-user.decorator';
 
-export class GenericController<T extends BaseEntity & { id: number | string }> {
-  constructor(private readonly genericService: CrudService<T>) {}
+export class GenericController<T extends GenericEntity & { id: number | string }> {
+  constructor(private readonly genericService: GenericService<T>) {}
 
   @Post()
   create(@Body() createDto: any, @GetUser() user?: any) {
@@ -33,8 +33,8 @@ export class GenericController<T extends BaseEntity & { id: number | string }> {
       withDeleted: query?.withDeleted,
       skip: query?.skip,
       take: query?.take,
-      order: query?.order
-    };    
+      order: query?.order,
+    };
     return this.genericService.findAll(queryOptions as any);
   }
 
@@ -50,12 +50,18 @@ export class GenericController<T extends BaseEntity & { id: number | string }> {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDto: any ,@GetUser() user?:any) {
+  update(
+    @Param('id') id: string,
+    @Body() updateDto: any,
+    @GetUser() user?: any,
+  ) {
     const options = { id: +id } as FindOptionsWhere<T>;
-    return this.genericService.update(updateDto as unknown as DeepPartial<T>, {
-      where: options,
-    },
-    user
+    return this.genericService.update(
+      updateDto as unknown as DeepPartial<T>,
+      {
+        where: options,
+      },
+      user,
     );
   }
 
