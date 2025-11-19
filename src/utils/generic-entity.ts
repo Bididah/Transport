@@ -19,5 +19,5 @@ export abstract class GenericEntity {
   updatedAt: Date;
 
   @Column({ nullable: true })
-  createdBy: number;
+  createdBy: string;
 }
