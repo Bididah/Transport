@@ -2,7 +2,6 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { Client } from '../../clients/entities/client.entity';
 import { GenericEntity } from 'src/utils/generic-entity';
 
-
 export enum PortMode {
   AIR = 'AIR',
   SEA = 'SEA',
@@ -31,8 +30,11 @@ export enum BillingType {
 
 @Entity('shipments')
 export class Shipment extends GenericEntity {
-  @PrimaryGeneratedColumn()
-  declare id: number;
+  @PrimaryGeneratedColumn('uuid')
+  declare id: string;
+
+  @Column({ type: 'varchar', length: 30, unique: true, nullable: true })
+  trakingNumber: string;
 
   @ManyToOne(() => Client, { eager: true })
   client: Client;
